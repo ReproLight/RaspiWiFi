@@ -11,8 +11,10 @@ app.debug = True
 
 @app.route('/')
 def index():
-    wifi_ap_array = scan_wifi_networks()
+    #wifi_ap_array = scan_wifi_networks()
     config_hash = config_file_hash()
+
+    wifi_ap_array = ["reprolight", "my wifi", "weak wifi"]
 
     return render_template('app.html', wifi_ap_array = wifi_ap_array, config_hash = config_hash)
 
@@ -33,7 +35,7 @@ def save_credentials():
     wifi_key = request.form['wifi_key']
 
     create_wpa_supplicant(ssid, wifi_key)
-    
+
     # Call set_ap_client_mode() in a thread otherwise the reboot will prevent
     # the response from getting to the browser
     def sleep_and_start_ap():
@@ -131,15 +133,26 @@ def update_wpa(wpa_enabled, wpa_key):
 
 
 def config_file_hash():
-    config_file = open('/etc/raspiwifi/raspiwifi.conf')
-    config_hash = {}
+    try:
+        config_file = open('/etc/raspiwifi/raspiwifi.conf')
+        config_hash = {}
 
-    for line in config_file:
-        line_key = line.split("=")[0]
-        line_value = line.split("=")[1].rstrip()
-        config_hash[line_key] = line_value
+        for line in config_file:
+            line_key = line.split("=")[0]
+            line_value = line.split("=")[1].rstrip()
+            config_hash[line_key] = line_value
 
-    return config_hash
+        return config_hash
+    except FileNotFoundError:
+        return dict(
+            ssid_prefix="Bliss Setup",
+            auto_config=1,
+            auto_config_delay=300,
+            ssl_enabled=0,
+            server_port=8500,
+            wpa_enabled=0,
+            wpa_key=0
+        )
 
 
 if __name__ == '__main__':
