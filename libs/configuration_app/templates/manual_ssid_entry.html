@@ -1,20 +1,28 @@
-{% extends 'layout.html' %}
-
-{% block body %}
-  <div id="mainContent">
-    <h1>WiFi Setup</h1>
-    <div class="wifiIcon"></div>
-
-    <form action="{{ url_for('save_credentials') }}" method=post>
-      <ul>
-        <li><label for="ssid">Enter your network SSID:</label></li>
-        <li><input type="text" name="ssid", class="wifiNetworkInputs"></li>
-
-        <li><label for="wifi_key">Your Wifi password</label></li>
-        <li><input type="password" name="wifi_key", class="wifiNetworkInputs"></li>
-
-        <input type="submit", class="wifiConnectButton">
-      </ul>
+{% extends 'layout.html' %} {% block body %}
+<div class="mdl-grid main-layout">
+    <form action="{{ url_for('save_credentials') }}" method="post">
+        <div class="mdl-cell mdl-cell--12-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label for="ssid" class="mdl-textfield__label">Enter your network SSID:</label>
+                <input type="text" name="ssid" class="mdl-textfield__input" />
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label for="wifi_key" class="mdl-textfield__label">Your Wifi password</label>
+                <input type="password" name="wifi_key" class="mdl-textfield__input" />
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+            <div class="mdl-layout-spacer"></div>
+            <button
+                class="mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                type="submit"
+            >
+                Connect to wifi
+            </button>
+            <div class="mdl-layout-spacer"></div>
+        </div>
     </form>
-  </div>
+</div>
 {% endblock %}

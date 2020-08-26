@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import subprocess
+import socket
 import os
 import time
 from threading import Thread
@@ -11,10 +12,10 @@ app.debug = True
 
 @app.route('/')
 def index():
-    #wifi_ap_array = scan_wifi_networks()
+    wifi_ap_array = scan_wifi_networks()
     config_hash = config_file_hash()
 
-    wifi_ap_array = ["reprolight", "my wifi", "weak wifi"]
+    #wifi_ap_array = ["reprolight", "my wifi", "weak wifi"]
 
     return render_template('app.html', wifi_ap_array = wifi_ap_array, config_hash = config_hash)
 
@@ -23,10 +24,10 @@ def index():
 def manual_ssid_entry():
     return render_template('manual_ssid_entry.html')
 
-@app.route('/wpa_settings')
-def wpa_settings():
-    config_hash = config_file_hash()
-    return render_template('wpa_settings.html', wpa_enabled = config_hash['wpa_enabled'], wpa_key = config_hash['wpa_key'])
+#@app.route('/wpa_settings')
+#def wpa_settings():
+#    config_hash = config_file_hash()
+#    return render_template('wpa_settings.html', wpa_enabled = config_hash['wpa_enabled'], wpa_key = config_hash['wpa_key'])
 
 
 @app.route('/save_credentials', methods = ['GET', 'POST'])
@@ -44,7 +45,7 @@ def save_credentials():
     t = Thread(target=sleep_and_start_ap)
     t.start()
 
-    return render_template('save_credentials.html', ssid = ssid)
+    return render_template('save_credentials.html', ssid = ssid, hostname = socket.gethostname())
 
 
 @app.route('/save_wpa_credentials', methods = ['GET', 'POST'])
