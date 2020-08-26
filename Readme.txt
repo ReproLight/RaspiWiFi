@@ -53,10 +53,10 @@ CONFIGURATION:
       Configuration Mode (Host Mode). The last four of you Pi's serial number
       will be appended to whatever you enter here.
 
-==== "WPA Encryption" [default: No]: If oyu enable this setting the Access Point 
-      created during Configuration Mode will be encrypted using WPA2 encryption. 
-      The prompt following this one will let you specify the Wireless Key to be 
-      used. You can leave the password blank if you chose 'N' to this option. 
+==== "WPA Encryption" [default: No]: If oyu enable this setting the Access Point
+      created during Configuration Mode will be encrypted using WPA2 encryption.
+      The prompt following this one will let you specify the Wireless Key to be
+      used. You can leave the password blank if you chose 'N' to this option.
 
 ==== "Auto-Config mode" [default: n]: If you choose to enable this mode your Pi
       will check for an active connection while in normal operation mode (Client Mode).
@@ -89,10 +89,10 @@ been running by editing the /etc/raspiwifi/raspiwifi.conf
 
 USAGE:
 
-== Connect to the "RaspiWiFi[xxxx] Setup" access point using any other WiFi enabled
+== Connect to the "Bliss WiFi Setup" access point using any other WiFi enabled
 device.
 
-== Navigate to [10.0.0.1], [raspiwifisetup.com], or
+== Navigate to [10.0.0.1], [blisswifisetup.com], or
 [idliketoconfigurethewifionthisdevicenowplease.com] (I was debating whether this
 was funny or not and, yes, it was) using any web browser on the device you
 connected with. (don't forget to manually start with [https://] when using SSL mode)
@@ -107,23 +107,23 @@ specify your network information by clicking on the "manual SSID entry ->" link.
 == At this point your Raspberry Pi will reboot and connect to the access point
 specified.
 
-== You can view the current WPA encryption settings and change them from the main Web 
-Configuration interface. The current settings are visible in a panel in the upper 
-left corner of the screen. If you click the values in this display you will be taken 
-to a page where you can change them. If you change them your device will reboot to 
-enable the new configuration. 
+== You can view the current WPA encryption settings and change them from the main Web
+Configuration interface. The current settings are visible in a panel in the upper
+left corner of the screen. If you click the values in this display you will be taken
+to a page where you can change them. If you change them your device will reboot to
+enable the new configuration.
 
 == You can also use the Pi in a point-to-point connection mode by leaving it in
 Configuration Mode. All services will be addresible in their normal way at
-10.0.0.1 while connected to the "RaspiWiFi[xxxx] Setup" AP.
+10.0.0.1 while connected to the "Bliss WiFi Setup" AP.
 
 
 
 RESETTING THE DEVICE:
 
-== If GPIO 18 is pulled HIGH for 10 seconds or more the Raspberry Pi will reset
+== If GPIO 17 is pulled HIGH for 10 seconds or more the Raspberry Pi will reset
 all settings, reboot, and enter "Configuration Mode" again. It's useful to have
-a simple button wired on GPIO 18 to reset easily if moving to a new location,
+a simple button wired on GPIO 17 to reset easily if moving to a new location,
 or if incorrect connection information is ever entered. Just press and hold for
 10 seconds or longer.
 
@@ -134,9 +134,9 @@ or if incorrect connection information is ever entered. Just press and hold for
 UNINSTALLATION:
 
 == You can uninstall RaspiWiFi at any time by running:
-   
+
    sudo python3 /usr/lib/raspiwifi/uninstall.python3
 
-   You can also run it from the "libs/" directory from a fresh clone if you've 
-   installed from a previous version and don't have /usr/lib/raspiwifi/uninstall.py 
+   You can also run it from the "libs/" directory from a fresh clone if you've
+   installed from a previous version and don't have /usr/lib/raspiwifi/uninstall.py
    available.
